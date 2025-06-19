@@ -5,7 +5,10 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [tailwindcss(), react()],
-  base: '/Portfolio.V1'
+  base: '/Portfolio.V1/',
+   build: {
+    chunkSizeWarningLimit: 1500
+   }
 })
 
 
