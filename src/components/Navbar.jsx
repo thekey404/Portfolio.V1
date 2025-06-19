@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
+import yashimg from '../../dist/assets/ylogo.png'
 const navItems = ["Home", "About", "Projects", "Skills", "Contact"];
 
 export default function Navbar() {
@@ -14,7 +14,7 @@ export default function Navbar() {
                 {/* Navbar */}
                 <nav className="z-10 relative flex items-center justify-between px-6 py-4 text-white">
                     <h1 className="text-5xl font-serif text-gray-400 bg-clip-text font-light">
-                        Yash
+                        <img src={yashimg} className="w-20" />
                     </h1>
                     <div className="hidden md:flex gap-6">
                         {navItems.map((item, i) => (
