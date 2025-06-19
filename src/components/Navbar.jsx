@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import yashimg from '../../dist/assets/ylogo.png'
+import yashimg from '../../dist/assets/ylogo-BD5HsSwv.png'
 const navItems = ["Home", "About", "Projects", "Skills", "Contact"];
 
 export default function Navbar() {
