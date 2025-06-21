@@ -1,31 +1,38 @@
-import CardsView from "./components/CardsView"
-import Navbar from "./components/Navbar"
-import SkillsCard from "./components/SkillsCard"
-import SparklesPreview from "./components/Sparklespreview"
-import Home from "./components/Sparklespreview"
-import About from "./components/About"
-import Projects from "./components/CardsView"
-import Skills from "./components/SkillsCard"
-import { Route, Routes } from "react-router-dom"
+// src/App.jsx
+import Navbar from "./components/Navbar";
+import SparklesPreview from "./components/Sparklespreview";
+import About from "./components/About";
+import CardsView from "./components/CardsView";
+import SkillsCard from "./components/SkillsCard";
+import ContactForm from "./components/Contacts";
+import ScrollToTop from "./components/ScrollToTop";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
     <>
-      <div>
-        <Navbar />
+      <ScrollToTop />
+      <Navbar />
+
+      {/* Page Sections with IDs */}
+      <div id="home">
         <SparklesPreview />
+      </div>
+      <div id="about">
         <About />
+      </div>
+      <div id="projects">
         <CardsView />
+      </div>
+      <div id="skills">
         <SkillsCard />
       </div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/skills" element={<Skills />} />
-      </Routes>
+      <div id="contact">
+        <ContactForm />
+      </div>
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

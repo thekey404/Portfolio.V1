@@ -88,12 +88,12 @@ import { motion } from 'framer-motion';
 
 const SkillsCard = () => {
     return (
-        <div className="text-white w-full px-4 pt-36 overflow-hidden">
+        <div className="text-white w-full pb-10 px-4 pt-36 overflow-hidden">
             <motion.a
                 whileHover={{ scale: 1.2, rotate: [0, 2, -2, 0] }}
                 className="text-lg font-medium relative group block text-center"
             >
-                <div className="text-5xl sm:text-6xl md:text-7xl pb-3">Skills</div>
+                <div className="text-5xl sm:text-6xl md:text-7xl pb-10">Skills</div>
                 <span className="absolute left-1/2 -translate-x-1/2 bottom-0 w-44 h-[2px] bg-gradient-to-r from-pink-500 to-violet-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
             </motion.a>
 
