@@ -20,12 +20,7 @@ export const Card = forwardRef(
 );
 Card.displayName = "Card";
 
-const makeSlot = (
-    i,
-    distX,
-    distY,
-    total
-) => ({
+const makeSlot = (i, distX, distY, total) => ({
     x: i * distX,
     y: -i * distY,
     z: -i * distX * 1.5,
@@ -46,8 +41,8 @@ const placeNow = (el, slot, skew) =>
     });
 
 const CardSwap = ({
-    width = 500,
-    height = 400,
+    width = 320,
+    height = 420,
     cardDistance = 60,
     verticalDistance = 100,
     delay = 5000,
@@ -76,20 +71,13 @@ const CardSwap = ({
                 returnDelay: 0.2,
             };
 
-    const childArr = useMemo(
-        () => Children.toArray(children),
-        [children]
-    );
+    const childArr = useMemo(() => Children.toArray(children), [children]);
     const refs = useMemo(
         () => childArr.map(() => React.createRef()),
-        // eslint-disable-next-line react-hooks/exhaustive-deps
         [childArr.length]
     );
 
-    const order = useRef(
-        Array.from({ length: childArr.length }, (_, i) => i)
-    );
-
+    const order = useRef(Array.from({ length: childArr.length }, (_, i) => i));
     const tlRef = useRef(null);
     const intervalRef = useRef();
     const container = useRef(null);
@@ -143,13 +131,9 @@ const CardSwap = ({
                 refs.length
             );
             tl.addLabel("return", `promote+=${config.durMove * config.returnDelay}`);
-            tl.call(
-                () => {
-                    gsap.set(elFront, { zIndex: backSlot.zIndex });
-                },
-                undefined,
-                "return"
-            );
+            tl.call(() => {
+                gsap.set(elFront, { zIndex: backSlot.zIndex });
+            }, undefined, "return");
             tl.set(elFront, { x: backSlot.x, z: backSlot.z }, "return");
             tl.to(
                 elFront,
@@ -187,8 +171,8 @@ const CardSwap = ({
                 clearInterval(intervalRef.current);
             };
         }
+
         return () => clearInterval(intervalRef.current);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, easing]);
 
     const rendered = childArr.map((child, i) =>
@@ -196,19 +180,24 @@ const CardSwap = ({
             ? cloneElement(child, {
                 key: i,
                 ref: refs[i],
-                style: { width, height, ...(child.props.style ?? {}) },
+                style: {
+                    width: "100%",
+                    height: "100%",
+                    ...(child.props.style ?? {}),
+                },
                 onClick: (e) => {
                     child.props.onClick?.(e);
                     onCardClick?.(i);
                 },
-            }) : child
+            })
+            : child
     );
 
     return (
         <div
             ref={container}
-            className="mt-40 ms-96 bottom-0 right-0 transform translate-x-[5%] translate-y-[20%] origin-bottom-right perspective-[900px] overflow-visible max-[768px]:translate-x-[25%] max-[768px]:translate-y-[25%] max-[768px]:scale-[0.75] max-[480px]:translate-x-[25%] max-[480px]:translate-y-[25%] max-[480px]:scale-[0.55]"
-            style={{ width, height }}
+            className="relative mx-auto mt-20 w-[300px] sm:w-[360px] md:w-[500px] lg:w-[600px] xl:w-[700px] perspective-[1000px] scale-[0.9] md:scale-100"
+            style={{ height }}
         >
             {rendered}
         </div>

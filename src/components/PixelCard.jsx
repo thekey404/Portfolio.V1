@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import yashimg from '../assets/yash.png'
+
 class Pixel {
   constructor(canvas, context, x, y, color, speed, delay) {
     this.width = canvas.width;
@@ -101,29 +101,29 @@ const VARIANTS = {
     gap: 5,
     speed: 35,
     colors: "#f8fafc,#f1f5f9,#cbd5e1",
-    noFocus: false
+    noFocus: false,
   },
   blue: {
     activeColor: "#e0f2fe",
     gap: 10,
     speed: 25,
     colors: "#e0f2fe,#7dd3fc,#0ea5e9",
-    noFocus: false
+    noFocus: false,
   },
   yellow: {
     activeColor: "#fef08a",
     gap: 3,
     speed: 20,
     colors: "#fef08a,#fde047,#eab308",
-    noFocus: false
+    noFocus: false,
   },
   pink: {
     activeColor: "#fecdd3",
     gap: 6,
     speed: 80,
     colors: "#fecdd3,#fda4af,#e11d48",
-    noFocus: true
-  }
+    noFocus: true,
+  },
 };
 
 export default function PixelCard({
@@ -133,7 +133,7 @@ export default function PixelCard({
   colors,
   noFocus,
   className = "",
-  children
+  children,
 }) {
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
@@ -250,25 +250,17 @@ export default function PixelCard({
   }, [finalGap, finalSpeed, finalColors, finalNoFocus]);
 
   return (
-    
-      <div
-        ref={containerRef}
-        className={`h-[400px] w-96 relative overflow-hidden grid place-items-center aspect-[4/5] border border-[#27272a] rounded-[25px]  transition-colors duration-200 ease-[cubic-bezier(0.5,1,0.89,1)] select-none ${className}`}
-
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-
-        onFocus={finalNoFocus ? undefined : onFocus}
-        onBlur={finalNoFocus ? undefined : onBlur}
-        tabIndex={finalNoFocus ? -1 : 0}
-      >
-        {/* <img src={yashimg} alt="" /> */}
-        <canvas
-          className="w-full h-full block"
-          ref={canvasRef}
-        />
-        {children}
-      </div>
-      
+    <div
+      ref={containerRef}
+      className={`h-[400px] w-72 sm:w-80 md:w-96 relative overflow-hidden grid place-items-center aspect-[4/5] border border-[#27272a] rounded-[25px] transition-colors duration-200 ease-[cubic-bezier(0.5,1,0.89,1)] select-none ${className}`}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      onFocus={finalNoFocus ? undefined : onFocus}
+      onBlur={finalNoFocus ? undefined : onBlur}
+      tabIndex={finalNoFocus ? -1 : 0}
+    >
+      <canvas className="w-full h-full block" ref={canvasRef} />
+      {children}
+    </div>
   );
 }
