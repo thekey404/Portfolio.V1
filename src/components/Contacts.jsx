@@ -1,6 +1,42 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
+import { db } from "../firebase";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
 
 export default function ContactForm() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState(false);
+
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const contactRef = collection(db, "contacts");
+      await addDoc(contactRef, {
+        ...formData,
+        created: Timestamp.now(),
+      });
+      setSent(true);
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    } finally {
+      setLoading(false);
+      setTimeout(() => setSent(false), 5000);
+    }
+  };
+
   return (
     <div className="relative w-full min-h-screen bg-black flex items-center justify-center py-28 px-4 overflow-hidden">
       {/* Infinite animated gradient background */}
@@ -23,11 +59,14 @@ export default function ContactForm() {
           Let's Connect
         </h2>
 
-        <form className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {/* Name */}
           <div className="w-full">
             <label className="text-white block mb-2 text-sm">Your Name</label>
             <input
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
               type="text"
               placeholder="Enter your name"
               className="w-full px-4 py-3 rounded-lg bg-[#1c1c1e] text-white focus:outline-none focus:ring-2 focus:ring-pink-500"
@@ -39,6 +78,9 @@ export default function ContactForm() {
           <div className="w-full">
             <label className="text-white block mb-2 text-sm">Email Address</label>
             <input
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
               type="email"
               placeholder="you@example.com"
               className="w-full px-4 py-3 rounded-lg bg-[#1c1c1e] text-white focus:outline-none focus:ring-2 focus:ring-pink-500"
@@ -50,6 +92,9 @@ export default function ContactForm() {
           <div className="sm:col-span-2">
             <label className="text-white block mb-2 text-sm">Subject</label>
             <input
+              name="subject"
+              value={formData.subject}
+              onChange={handleChange}
               type="text"
               placeholder="e.g. Freelance Project, Collaboration, Feedback"
               className="w-full px-4 py-3 rounded-lg bg-[#1c1c1e] text-white focus:outline-none focus:ring-2 focus:ring-pink-500"
@@ -61,6 +106,9 @@ export default function ContactForm() {
           <div className="sm:col-span-2">
             <label className="text-white block mb-2 text-sm">Message</label>
             <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
               rows="5"
               placeholder="Write your message here..."
               className="w-full px-4 py-3 rounded-lg bg-[#1c1c1e] text-white focus:outline-none focus:ring-2 focus:ring-pink-500"
@@ -74,11 +122,20 @@ export default function ContactForm() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               type="submit"
-              className="bg-gradient-to-r from-pink-500 to-violet-600 text-white font-semibold px-10 py-3 rounded-full transition-all duration-300 hover:brightness-110"
+              disabled={loading}
+              className={`bg-gradient-to-r from-pink-500 to-violet-600 text-white font-semibold px-10 py-3 rounded-full transition-all duration-300 hover:brightness-110 ${loading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
             >
-              Send Message
+              {loading ? "Sending..." : "Send Message"}
             </motion.button>
           </div>
+
+          {/* Success Message */}
+          {sent && (
+            <div className="sm:col-span-2 text-center text-green-400 font-medium mt-4">
+              Message sent successfully!
+            </div>
+          )}
         </form>
       </motion.div>
     </div>
