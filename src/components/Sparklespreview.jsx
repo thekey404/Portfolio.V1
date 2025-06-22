@@ -3,7 +3,7 @@ import { SparklesCore } from "./Sparkles";
 
 const SparklesPreview = () => {
     return (
-        <div className="pt-32 md:pt-48 lg:pt-60 mb-16 md:mb-24 h-screen w-full bg-black flex flex-col items-center justify-center overflow-hidden">
+        <div className="pt-32 md:pt-48 lg:pt-60 mb-14 md:mb-14 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
             <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-9xl font-bold text-center text-white relative z-20 px-4">
                 Yash Valecha
             </h1>
