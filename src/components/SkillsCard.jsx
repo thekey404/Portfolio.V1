@@ -22,7 +22,7 @@ const SkillsCard = () => {
                 <CardSwap
                     cardDistance={120}
                     verticalDistance={80}
-                    delay={5000}
+                    delay={3000}
                     pauseOnHover={true}
                 >
                     <Card>
