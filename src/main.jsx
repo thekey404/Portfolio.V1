@@ -5,6 +5,7 @@ import App from './App.jsx'
 import Router from './routing/Router.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from './context/ThemeContext.jsx'
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

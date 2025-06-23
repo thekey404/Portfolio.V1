@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTwitter, faInstagram, faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 
 export default function Footer() {
     return (
@@ -61,7 +63,7 @@ export default function Footer() {
                             whileHover={{ scale: 1.2 }}
                             className="hover:text-blue-400 transition"
                         >
-                            <i className="fab fa-twitter"></i>
+                            <FontAwesomeIcon icon={faTwitter} />
                         </motion.a>
                         <motion.a
                             href="#"
