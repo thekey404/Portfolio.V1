@@ -32,8 +32,8 @@ export default function Footer() {
                 {/* Contact Info */}
                 <div>
                     <h3 className="text-xl font-bold mb-3 text-pink-500">Contact</h3>
-                    <p className="text-gray-400">yashvalecha133.com</p>
-                    <p className="text-gray-400">+91 6359393635</p>
+                    <p className="text-gray-400">yashvalecha133@gmail.com</p>
+                    <p className="text-gray-400">+91 63593 93635</p>
                     <p className="text-gray-400">Ahmedabad, India</p>
                 </div>
 
