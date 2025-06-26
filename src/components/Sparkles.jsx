@@ -1,7 +1,7 @@
 import React, { useId, useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
-import { motion, useAnimation } from "framer-motion";
+import { motion, useAnimation } from "motion/react";
 import { cn } from "./utils"; // Ensure this utility exists
 
 export const SparklesCore = ({
